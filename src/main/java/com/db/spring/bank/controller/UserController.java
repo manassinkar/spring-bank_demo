@@ -15,7 +15,7 @@ import com.db.spring.bank.service.Response;
 import com.db.spring.bank.service.UserService;
 
 class DepositAndWithdrawRequest {
-	public int acc_no;
+	public int accNo;
 	public double amount;
 }
 
@@ -25,10 +25,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@GetMapping("/User/{acc_no}")
-	private ResponseEntity<User> getUser(@PathVariable("acc_no") int acc_no) {
-		System.out.println("Test123");
-		User user = userService.getUserByAccNo(acc_no);
+	@GetMapping("/User/{accNo}")
+	private ResponseEntity<User> getUser(@PathVariable("accNo") int accNo) {
+		User user = userService.getUserByAccNo(accNo);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		} else {
@@ -42,33 +41,33 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/User")
-	private int createUser(@RequestBody User user) {
-		System.out.println("Test123");
-		return userService.createUser(user.getAccNo(), user.getName());
+	private User createUser(@RequestBody User user) {
+		System.out.println(user.toString());
+		return userService.createUser(user);
 	}
 	
 	@PostMapping("/Deposit")
 	private ResponseEntity<Double> deposit(@RequestBody DepositAndWithdrawRequest data) {
-		Response resp = userService.deposit(data.acc_no, data.amount);
-		if (resp.status == "SUCCESS") {
+		Response resp = userService.deposit(data.accNo, data.amount);
+		if (resp != null && resp.status == "SUCCESS") {
 			return new ResponseEntity<Double>(resp.balance, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Double>(resp.balance, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Double>(-1.0, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@PostMapping("/Withdraw")
 	private ResponseEntity<Double> withdraw(@RequestBody DepositAndWithdrawRequest data) {
-		Response resp = userService.withdraw(data.acc_no, data.amount);
-		if (resp.status == "SUCCESS") {
+		Response resp = userService.withdraw(data.accNo, data.amount);
+		if (resp != null && resp.status == "SUCCESS") {
 			return new ResponseEntity<Double>(resp.balance, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Double>(resp.balance, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@GetMapping("/CheckBalance/{acc_no}")
-	private double checkBalance(@PathVariable("acc_no") int acc_no) {
-		return userService.checkBalance(acc_no);
+	@GetMapping("/CheckBalance/{accNo}")
+	private double checkBalance(@PathVariable("accNo") int accNo) {
+		return userService.checkBalance(accNo);
 	}
 }

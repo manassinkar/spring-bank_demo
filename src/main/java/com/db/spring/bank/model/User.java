@@ -15,7 +15,8 @@ public class User {
 	// Defining employee id as primary key
 	@Id
 	@Column
-	private int acc_no;
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int accNo;
 	@Column
 	private String name;
 	@Column
@@ -25,19 +26,19 @@ public class User {
 		super();
 	}
 
-	public User(int acc_no, String name, double balance) {
+	public User(int accNo, String name, double balance) {
 		super();
-		this.acc_no = acc_no;
+		this.accNo = accNo;
 		this.name = name;
 		this.balance = balance;
 	}
 
 	public int getAccNo() {
-		return acc_no;
+		return accNo;
 	}
 
-	public void setAccNo(int acc_no) {
-		this.acc_no = acc_no;
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
 	}
 
 	public String getName() {
@@ -58,7 +59,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "Employee [acc_no=" + acc_no + ", name=" + name + ", balance=" + balance + "]";
+		return "User [accNo=" + accNo + ", name=" + name + ", balance=" + balance + "]";
 	}
 
 }

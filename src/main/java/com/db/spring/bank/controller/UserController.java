@@ -62,7 +62,7 @@ public class UserController {
 		if (resp != null && resp.status == "SUCCESS") {
 			return new ResponseEntity<Double>(resp.balance, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Double>(resp.balance, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Double>(-1.0, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

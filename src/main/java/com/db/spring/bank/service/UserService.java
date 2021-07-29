@@ -35,7 +35,6 @@ public class UserService {
 			Response resp = new Response("SUCCESS", userRepository.findById(accNo).get().getBalance());
 			return resp;			
 		} catch (Exception e) {
-			System.out.println(e);
 			return null;
 		}
 	}

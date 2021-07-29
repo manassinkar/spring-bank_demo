@@ -1,4 +1,4 @@
-package com.db.spring.controller;
+package com.db.spring.bank.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.db.spring.model.User;
-import com.db.spring.service.Response;
-import com.db.spring.service.UserService;
+import com.db.spring.bank.model.User;
+import com.db.spring.bank.service.Response;
+import com.db.spring.bank.service.UserService;
 
 class DepositAndWithdrawRequest {
 	public int acc_no;

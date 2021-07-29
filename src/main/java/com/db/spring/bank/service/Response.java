@@ -1,4 +1,4 @@
-package com.db.spring.service;
+package com.db.spring.bank.service;
 
 public class Response {
 	public String status;
